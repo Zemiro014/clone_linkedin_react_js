@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signInAPI } from "../actions";
+import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
     return (
         <Container>
+            {
+                props.user && 
+                <Navigate to="/home" />
+            }
             <Nav>
                 <a href="/">
                     <img src="/images/login-logo.svg" alt="" />
@@ -169,7 +174,10 @@ const Google = styled.button`
 `;
 
 const mapStateToProps = (state) => {
-    return {};
+    console.log(state)
+    return {
+        user: state.userState.user
+    };
 }
 
 const mapDispatchProps = (dispatch) => ({
